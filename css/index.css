@@ -799,7 +799,7 @@ header {
       }
 
       .carrusel{
-        margin-top: -250px;
+        margin-top: -200px;
         background: transparent;
       }
 
@@ -819,7 +819,7 @@ header {
 
       .tabs_toggle{
         width: 100%;
-        font-size: .8em;
+        font-size: .7em;
       }
 
       .text-creadores h2{

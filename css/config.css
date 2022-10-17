@@ -1,0 +1,10 @@
+:root{
+    /* colores */
+    --dark: #0f0f0f;
+    --negro: #000;
+    --rosa: #e40980;
+    --dorado: #deb131;
+    --blanco: #fff;
+    --azul: #09dce4;
+    --transparente: rgba(255, 255, 255, 0.233);
+}

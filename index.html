@@ -1,3 +1,63 @@
+<!-- <?php
+
+//Include Configuration File
+include('config/configGoogle.php');
+
+$login_button = '';
+
+
+if(isset($_GET["code"]))
+{
+
+ $token = $google_client->fetchAccessTokenWithAuthCode($_GET["code"]);
+
+
+ if(!isset($token['error']))
+ {
+
+  header("location: usuario.php");
+ 
+  $google_client->setAccessToken($token['access_token']);
+
+ 
+  $_SESSION['access_token'] = $token['access_token'];
+
+
+  $google_service = new Google_Service_Oauth2($google_client);
+
+ 
+  $data = $google_service->userinfo->get();
+
+ 
+  if(!empty($data['given_name']))
+  {
+   $_SESSION['user_first_name'] = $data['given_name'];
+  }
+
+  if(!empty($data['family_name']))
+  {
+   $_SESSION['user_last_name'] = $data['family_name'];
+  }
+
+  if(!empty($data['email']))
+  {
+   $_SESSION['user_email_address'] = $data['email'];
+  }
+
+  if(!empty($data['gender']))
+  {
+   $_SESSION['user_gender'] = $data['gender'];
+  }
+
+  if(!empty($data['picture']))
+  {
+   $_SESSION['user_image'] = $data['picture'];
+  }
+ }
+}
+
+?> -->
+
 <!DOCTYPE html>
 <html lang="es">
   <head>
@@ -7,13 +67,12 @@
     <title>Club Privado VIP</title>
 
     <!-- css -->
-     <link rel="stylesheet"
-          href="https://fonts.googleapis.com/css?family=Teko">
     <link rel="icon" href="assets/img/Documento de Barbara Mora.png" />
-   
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Teko" />
     <link rel="stylesheet" href="css/normalize.css" />
     <link rel="stylesheet" href="css/config.css" />
     <link rel="stylesheet" href="css/index.css" />
+
   </head>
   <body>
     <!-- menu de navegación -->
@@ -32,179 +91,49 @@
       </a>
 
       <ul>
-        <li><a href="">Contenido</a></li>
-        <li><a href="">Galeria gratuita</a></li>
-        <li><a href="">Tipos de suscripciones</a></li>
-        <li><a href="">Quienes somos</a></li>
-        <li><a href="">Contacto</a></li>
+        <div class="dropdown">
+          <span>Contenido</span>
+          <div class="dropdown-content">
+            <a href="">Hombres</a>
+            <a href="">Mujeres</a>
+          </div>
+        </div>
+
+        <a href="">Galeria Gratuita</a>
+
+        <div class="dropdown">
+          <span>Tipos de suscripciones</span>
+          <div class="dropdown-content">
+            <a href="">VIP</a>
+            <a href="">Destacados</a>
+            <a href="">Lo mas nuevo</a>
+          </div>
+        </div>
+
+        <a href="">Quienes somos</a>
+
+        <div class="dropdown">
+          <span>Contacto</span>
+          <div class="dropdown-content">
+            <a href="">Creadores de contenido VIP</a>
+            <a href="">Suscripcion al club privado</a>
+          </div>
+        </div>
+        <a class="btn-registro" href="registro.html">Registrarme</a>
+
       </ul>
+
     </nav>
 
     <header>
-      <div class="sombra"></div>
-      <div class="text_header">
-        <div class="title_header">
-          <h1>Club privado VIP</h1>
+      <div class="slider-frame">
+        <div class="ul-slider">
+            <li class="li-slider"><img src="assets/img/header.png" alt=""></li>
+            <li class="li-slider"><img src="assets/img/header.png" alt=""></li>
+            <li class="li-slider"><img src="assets/img/header.png" alt=""></li>
+            <li class="li-slider"><img src="assets/img/header.png" alt=""></li>
         </div>
-
-        <div class="subtitle_header">
-          <h2>
-            Una plataforma de suscripción social para que todos los creadores se
-            conecten con sus fans.
-          </h2>
-        </div>
-
-        <div class="btn_header">
-          <span>Conviertete en creador</span>
-          <a href="">Empezar</a>
-        </div>
-      </div>
-      <div class="fotos_header">
-        <div class="foto">
-          <img
-            src="assets/profile/chema-photo-q0NfhcRc3v8-unsplash.jpg"
-            alt=""
-          />
-        </div>
-        <div class="foto">
-          <img
-            src="assets/profile/chema-photo-q0NfhcRc3v8-unsplash.jpg"
-            alt=""
-          />
-        </div>
-        <div class="foto">
-          <img
-            src="assets/profile/chema-photo-q0NfhcRc3v8-unsplash.jpg"
-            alt=""
-          />
-        </div>
-        <div class="foto">
-          <img
-            src="assets/profile/chema-photo-q0NfhcRc3v8-unsplash.jpg"
-            alt=""
-          />
-        </div>
-        <div class="foto">
-          <img
-            src="assets/profile/chema-photo-q0NfhcRc3v8-unsplash.jpg"
-            alt=""
-          />
-        </div>
-        <div class="foto">
-          <img
-            src="assets/profile/chema-photo-q0NfhcRc3v8-unsplash.jpg"
-            alt=""
-          />
-        </div>
-        <div class="foto">
-          <img
-            src="assets/profile/chema-photo-q0NfhcRc3v8-unsplash.jpg"
-            alt=""
-          />
-        </div>
-        <div class="foto">
-          <img
-            src="assets/profile/chema-photo-q0NfhcRc3v8-unsplash.jpg"
-            alt=""
-          />
-        </div>
-        <div class="foto">
-          <img
-            src="assets/profile/chema-photo-q0NfhcRc3v8-unsplash.jpg"
-            alt=""
-          />
-        </div>
-        <div class="foto">
-          <img
-            src="assets/profile/chema-photo-q0NfhcRc3v8-unsplash.jpg"
-            alt=""
-          />
-        </div>
-        <div class="foto">
-          <img
-            src="assets/profile/chema-photo-q0NfhcRc3v8-unsplash.jpg"
-            alt=""
-          />
-        </div>
-        <div class="foto">
-          <img
-            src="assets/profile/chema-photo-q0NfhcRc3v8-unsplash.jpg"
-            alt=""
-          />
-        </div>
-        <div class="foto">
-          <img
-            src="assets/profile/chema-photo-q0NfhcRc3v8-unsplash.jpg"
-            alt=""
-          />
-        </div>
-        <div class="foto">
-          <img
-            src="assets/profile/chema-photo-q0NfhcRc3v8-unsplash.jpg"
-            alt=""
-          />
-        </div>
-        <div class="foto">
-          <img
-            src="assets/profile/chema-photo-q0NfhcRc3v8-unsplash.jpg"
-            alt=""
-          />
-        </div>
-        <div class="foto">
-          <img
-            src="assets/profile/chema-photo-q0NfhcRc3v8-unsplash.jpg"
-            alt=""
-          />
-        </div>
-        <div class="foto">
-          <img
-            src="assets/profile/chema-photo-q0NfhcRc3v8-unsplash.jpg"
-            alt=""
-          />
-        </div>
-        <div class="foto">
-          <img
-            src="assets/profile/chema-photo-q0NfhcRc3v8-unsplash.jpg"
-            alt=""
-          />
-        </div>
-        <div class="foto">
-          <img
-            src="assets/profile/chema-photo-q0NfhcRc3v8-unsplash.jpg"
-            alt=""
-          />
-        </div>
-        <div class="foto">
-          <img
-            src="assets/profile/chema-photo-q0NfhcRc3v8-unsplash.jpg"
-            alt=""
-          />
-        </div>
-        <div class="foto">
-          <img
-            src="assets/profile/chema-photo-q0NfhcRc3v8-unsplash.jpg"
-            alt=""
-          />
-        </div>
-        <div class="foto">
-          <img
-            src="assets/profile/chema-photo-q0NfhcRc3v8-unsplash.jpg"
-            alt=""
-          />
-        </div>
-        <div class="foto">
-          <img
-            src="assets/profile/chema-photo-q0NfhcRc3v8-unsplash.jpg"
-            alt=""
-          />
-        </div>
-        <div class="foto">
-          <img
-            src="assets/profile/chema-photo-q0NfhcRc3v8-unsplash.jpg"
-            alt=""
-          />
-        </div>
-      </div>
+    </div>
     </header>
 
     <!-- formulario de login -->
@@ -220,11 +149,11 @@
         </div>
 
         <div class="grupo-input">
-          <input type="email" required placeholder="Correo electronico" />
+          <input type="email" name="correo" required placeholder="Correo electronico" />
         </div>
 
         <div class="grupo-input">
-          <input type="password" required placeholder="Contraseña" />
+          <input type="password" name="password" required placeholder="Contraseña" />
         </div>
 
         <div class="grupo-input">
@@ -232,53 +161,23 @@
         </div>
 
         <div class="grupo-text">
-          <span>O inicia sesion con</span>
+          <span>O inicia sesión con</span>
+        </div>
+
+        <div class="btn-google">
+          <?php 
+            if(!isset($_SESSION['access_token']))
+              {
+                echo $login_button = '<a href="'.$google_client->createAuthUrl().'">
+                <img src="assets/icons/google.png" alt="">
+                Iniciar sesion con Google
+                </a>';
+              }
+          ?>
         </div>
       </form>
+      
     </section>
-
-    <!-- carrusel -->
-
-    <div class="carrusel">
-      <div class="carrusel-items">
-        <div class="carrusel-item">
-          <img src="assets/img/logo 2.png" alt="" />
-        </div>
-        <div class="carrusel-item">
-          <img src="assets/img/logo 2.png" alt="" />
-        </div>
-        <div class="carrusel-item">
-          <img src="assets/img/logo 2.png" alt="" />
-        </div>
-        <div class="carrusel-item">
-          <img src="assets/img/logo 2.png" alt="" />
-        </div>
-        <div class="carrusel-item">
-          <img src="assets/img/logo 2.png" alt="" />
-        </div>
-        <div class="carrusel-item">
-          <img src="assets/img/logo 2.png" alt="" />
-        </div>
-        <div class="carrusel-item">
-          <img src="assets/img/logo 2.png" alt="" />
-        </div>
-        <div class="carrusel-item">
-          <img src="assets/img/logo 2.png" alt="" />
-        </div>
-        <div class="carrusel-item">
-          <img src="assets/img/logo 2.png" alt="" />
-        </div>
-        <div class="carrusel-item">
-          <img src="assets/img/logo 2.png" alt="" />
-        </div>
-        <div class="carrusel-item">
-          <img src="assets/img/logo 2.png" alt="" />
-        </div>
-        <div class="carrusel-item">
-          <img src="assets/img/logo 2.png" alt="" />
-        </div>
-      </div>
-    </div>
 
     <!-- Categorias -->
 
@@ -311,7 +210,7 @@
                       <a href="/">
                         <h4><small>Nombre Apellido</small>Descripcion</h4>
                         <picture>
-                          <img src="assets/profile/chema-photo-q0NfhcRc3v8-unsplash.jpg" alt="Image">
+                          <img src="assets/profile/1.jpg" alt="Image">
                         </picture>
                       </a>
                     </div>
@@ -322,7 +221,7 @@
                       <a href="/">
                         <h4><small>Nombre Apellido</small>Descripcion</h4>
                         <picture>
-                          <img src="assets/profile/chema-photo-q0NfhcRc3v8-unsplash.jpg" alt="Image">
+                          <img src="assets/profile/2.jpg" alt="Image">
                         </picture>
                       </a>
                     </div>
@@ -333,7 +232,7 @@
                       <a href="/">
                         <h4><small>Nombre Apellido</small>Descripcion</h4>
                         <picture>
-                          <img src="assets/profile/chema-photo-q0NfhcRc3v8-unsplash.jpg" alt="Image">
+                          <img src="assets/profile/3.jpg" alt="Image">
                         </picture>
                       </a>
                     </div>
@@ -344,7 +243,7 @@
                       <a href="/">
                         <h4><small>Nombre Apellido</small>Descripcion</h4>
                         <picture>
-                          <img src="assets/profile/chema-photo-q0NfhcRc3v8-unsplash.jpg" alt="Image">
+                          <img src="assets/profile/4.jpg" alt="Image">
                         </picture>
                       </a>
                     </div>
@@ -355,7 +254,7 @@
                       <a href="/">
                         <h4><small>Nombre Apellido</small>Descripcion</h4>
                         <picture>
-                          <img src="assets/profile/chema-photo-q0NfhcRc3v8-unsplash.jpg" alt="Image">
+                          <img src="assets/profile/5.jpg" alt="Image">
                         </picture>
                       </a>
                     </div>
@@ -366,7 +265,7 @@
                       <a href="/">
                         <h4><small>Nombre Apellido</small>Descripcion</h4>
                         <picture>
-                          <img src="assets/profile/chema-photo-q0NfhcRc3v8-unsplash.jpg" alt="Image">
+                          <img src="assets/profile/6.jpg" alt="Image">
                         </picture>
                       </a>
                     </div>
@@ -377,30 +276,7 @@
                       <a href="/">
                         <h4><small>Nombre Apellido</small>Descripcion</h4>
                         <picture>
-                          <img src="assets/profile/chema-photo-q0NfhcRc3v8-unsplash.jpg" alt="Image">
-                        </picture>
-                      </a>
-                    </div>
-                  </div>
-          
-          
-                  <div class="slick">
-                    <div>
-                      <a href="/">
-                        <h4><small>Nombre Apellido</small>Descripcion</h4>
-                        <picture>
-                          <img src="assets/profile/chema-photo-q0NfhcRc3v8-unsplash.jpg" alt="Image">
-                        </picture>
-                      </a>
-                    </div>
-                  </div>
-          
-                  <div class="slick">
-                    <div>
-                      <a href="/">
-                        <h4><small>Nombre Apellido</small>Descripcion</h4>
-                        <picture>
-                          <img src="assets/profile/chema-photo-q0NfhcRc3v8-unsplash.jpg" alt="Image">
+                          <img src="assets/profile/7.jpg" alt="Image">
                         </picture>
                       </a>
                     </div>
@@ -412,11 +288,25 @@
                       <a href="/">
                         <h4><small>Nombre Apellido</small>Descripcion</h4>
                         <picture>
-                          <img src="assets/profile/chema-photo-q0NfhcRc3v8-unsplash.jpg" alt="Image">
+                          <img src="assets/profile/8.jpg" alt="Image">
                         </picture>
                       </a>
                     </div>
                   </div>
+          
+                  <div class="slick">
+                    <div>
+                      <a href="/">
+                        <h4><small>Nombre Apellido</small>Descripcion</h4>
+                        <picture>
+                          <img src="assets/profile/9.jpg" alt="Image">
+                        </picture>
+                      </a>
+                    </div>
+                  </div>
+          
+          
+                 
                   
                 </div>
           
@@ -456,7 +346,7 @@
                       <a href="/">
                         <h4><small>Nombre Apellido</small>Descripcion</h4>
                         <picture>
-                          <img src="assets/profile/joe-ciciarelli-5Uckk5OBXaI-unsplash.jpg" alt="Image">
+                          <img src="assets/profile/10.jpg" alt="Image">
                         </picture>
                       </a>
                     </div>
@@ -467,7 +357,7 @@
                       <a href="/">
                         <h4><small>Nombre Apellido</small>Descripcion</h4>
                         <picture>
-                          <img src="assets/profile/joe-ciciarelli-5Uckk5OBXaI-unsplash.jpg" alt="Image">
+                          <img src="assets/profile/11.jpg" alt="Image">
                         </picture>
                       </a>
                     </div>
@@ -478,7 +368,7 @@
                       <a href="/">
                         <h4><small>Nombre Apellido</small>Descripcion</h4>
                         <picture>
-                          <img src="assets/profile/joe-ciciarelli-5Uckk5OBXaI-unsplash.jpg" alt="Image">
+                          <img src="assets/profile/12.jpg" alt="Image">
                         </picture>
                       </a>
                     </div>
@@ -489,7 +379,7 @@
                       <a href="/">
                         <h4><small>Nombre Apellido</small>Descripcion</h4>
                         <picture>
-                          <img src="assets/profile/joe-ciciarelli-5Uckk5OBXaI-unsplash.jpg" alt="Image">
+                          <img src="assets/profile/13.jpg" alt="Image">
                         </picture>
                       </a>
                     </div>
@@ -500,7 +390,7 @@
                       <a href="/">
                         <h4><small>Nombre Apellido</small>Descripcion</h4>
                         <picture>
-                          <img src="assets/profile/joe-ciciarelli-5Uckk5OBXaI-unsplash.jpg" alt="Image">
+                          <img src="assets/profile/14.jpg" alt="Image">
                         </picture>
                       </a>
                     </div>
@@ -511,7 +401,7 @@
                       <a href="/">
                         <h4><small>Nombre Apellido</small>Descripcion</h4>
                         <picture>
-                          <img src="assets/profile/joe-ciciarelli-5Uckk5OBXaI-unsplash.jpg" alt="Image">
+                          <img src="assets/profile/15.jpg" alt="Image">
                         </picture>
                       </a>
                     </div>
@@ -522,30 +412,7 @@
                       <a href="/">
                         <h4><small>Nombre Apellido</small>Descripcion</h4>
                         <picture>
-                          <img src="assets/profile/joe-ciciarelli-5Uckk5OBXaI-unsplash.jpg" alt="Image">
-                        </picture>
-                      </a>
-                    </div>
-                  </div>
-          
-          
-                  <div class="slick">
-                    <div>
-                      <a href="/">
-                        <h4><small>Nombre Apellido</small>Descripcion</h4>
-                        <picture>
-                          <img src="assets/profile/joe-ciciarelli-5Uckk5OBXaI-unsplash.jpg" alt="Image">
-                        </picture>
-                      </a>
-                    </div>
-                  </div>
-          
-                  <div class="slick">
-                    <div>
-                      <a href="/">
-                        <h4><small>Nombre Apellido</small>Descripcion</h4>
-                        <picture>
-                          <img src="assets/profile/joe-ciciarelli-5Uckk5OBXaI-unsplash.jpg" alt="Image">
+                          <img src="assets/profile/16.jpg" alt="Image">
                         </picture>
                       </a>
                     </div>
@@ -557,11 +424,24 @@
                       <a href="/">
                         <h4><small>Nombre Apellido</small>Descripcion</h4>
                         <picture>
-                          <img src="assets/profile/joe-ciciarelli-5Uckk5OBXaI-unsplash.jpg" alt="Image">
+                          <img src="assets/profile/17.jpg" alt="Image">
                         </picture>
                       </a>
                     </div>
                   </div>
+          
+                  <div class="slick">
+                    <div>
+                      <a href="/">
+                        <h4><small>Nombre Apellido</small>Descripcion</h4>
+                        <picture>
+                          <img src="assets/profile/18.jpg" alt="Image">
+                        </picture>
+                      </a>
+                    </div>
+                  </div>
+          
+        
                   
                 </div>
           
@@ -583,6 +463,152 @@
       </div>
     </section>
 
+    <!-- carrusel Destacados -->
+
+    <div class="Carousel-dos">
+      <div class="text-creadores-dos">
+        <h2>Destacados</h2>
+      </div>
+      <div class="slick-list" id="slick-list">
+        <button class="slick-arrow slick-prev" id="button-prev" data-button="button-prev"
+          onclick="app.processingButton(event)">
+          <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-left"
+            class="svg-inline--fa fa-chevron-left fa-w-10" role="img" xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 320 512">
+            <path fill="currentColor"
+              d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z">
+            </path>
+          </svg>
+        </button>
+        <div class="slick-track" id="track">
+          <div class="slick">
+            <div>
+              <a href="/">
+                <h4><small>Nombre Apellido</small>Descripcion</h4>
+                <picture>
+                  <img src="assets/profile/19.jpg" alt="Image">
+                </picture>
+              </a>
+            </div>
+          </div>
+  
+          <div class="slick">
+            <div>
+              <a href="/">
+                <h4><small>Nombre Apellido</small>Descripcion</h4>
+                <picture>
+                  <img src="assets/profile/20.jpg" alt="Image">
+                </picture>
+              </a>
+            </div>
+          </div>
+  
+          <div class="slick">
+            <div>
+              <a href="/">
+                <h4><small>Nombre Apellido</small>Descripcion</h4>
+                <picture>
+                  <img src="assets/profile/21.jpg" alt="Image">
+                </picture>
+              </a>
+            </div>
+          </div>
+  
+          <div class="slick">
+            <div>
+              <a href="/">
+                <h4><small>Nombre Apellido</small>Descripcion</h4>
+                <picture>
+                  <img src="assets/profile/22.jpg" alt="Image">
+                </picture>
+              </a>
+            </div>
+          </div>
+  
+          <div class="slick">
+            <div>
+              <a href="/">
+                <h4><small>Nombre Apellido</small>Descripcion</h4>
+                <picture>
+                  <img src="assets/profile/23.jpg" alt="Image">
+                </picture>
+              </a>
+            </div>
+          </div>
+  
+          <div class="slick">
+            <div>
+              <a href="/">
+                <h4><small>Nombre Apellido</small>Descripcion</h4>
+                <picture>
+                  <img src="assets/profile/24.jpg" alt="Image">
+                </picture>
+              </a>
+            </div>
+          </div>
+  
+          <div class="slick">
+            <div>
+              <a href="/">
+                <h4><small>Nombre Apellido</small>Descripcion</h4>
+                <picture>
+                  <img src="assets/profile/25.jpg" alt="Image">
+                </picture>
+              </a>
+            </div>
+          </div>
+  
+  
+          <div class="slick">
+            <div>
+              <a href="/">
+                <h4><small>Nombre Apellido</small>Descripcion</h4>
+                <picture>
+                  <img src="assets/profile/26.jpg" alt="Image">
+                </picture>
+              </a>
+            </div>
+          </div>
+  
+          <div class="slick">
+            <div>
+              <a href="/">
+                <h4><small>Nombre Apellido</small>Descripcion</h4>
+                <picture>
+                  <img src="assets/profile/27.jpg" alt="Image">
+                </picture>
+              </a>
+            </div>
+          </div>
+  
+  
+          <div class="slick">
+            <div>
+              <a href="/">
+                <h4><small>Nombre Apellido</small>Descripcion</h4>
+                <picture>
+                  <img src="assets/profile/28.jpg" alt="Image">
+                </picture>
+              </a>
+            </div>
+          </div>
+          
+        </div>
+  
+        
+        <button class="slick-arrow slick-next" id="button-next" data-button="button-next"
+          onclick="app.processingButton(event)">
+          <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-right"
+            class="svg-inline--fa fa-chevron-right fa-w-10" role="img" xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 320 512">
+            <path fill="currentColor"
+              d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z">
+            </path>
+          </svg>
+        </button>
+      </div>
+    </div>
+
 
     <!-- Creadores -->
 
@@ -594,52 +620,52 @@
 
       <div class="grid-creadores">
         <a href="" class="creador">
-          <img src="assets/profile/chema-photo-q0NfhcRc3v8-unsplash.jpg" alt="">
+          <img src="assets/profile/29.jpg" alt="">
           <form action=""></form>
         </a>
 
         <a href="" class="creador">
-          <img src="assets/profile/chema-photo-q0NfhcRc3v8-unsplash.jpg" alt="">
+          <img src="assets/profile/30.jpg" alt="">
           <form action=""></form>
         </a>
 
         <a href="" class="creador">
-          <img src="assets/profile/chema-photo-q0NfhcRc3v8-unsplash.jpg" alt="">
+          <img src="assets/profile/31.jpg" alt="">
           <form action=""></form>
         </a>
 
         <a href="" class="creador">
-          <img src="assets/profile/chema-photo-q0NfhcRc3v8-unsplash.jpg" alt="">
+          <img src="assets/profile/32.jpg" alt="">
           <form action=""></form>
         </a>
 
         <a href="" class="creador">
-          <img src="assets/profile/chema-photo-q0NfhcRc3v8-unsplash.jpg" alt="">
+          <img src="assets/profile/33.jpg" alt="">
           <form action=""></form>
         </a>
 
         <a href="" class="creador">
-          <img src="assets/profile/chema-photo-q0NfhcRc3v8-unsplash.jpg" alt="">
+          <img src="assets/profile/34.jpg" alt="">
           <form action=""></form>
         </a>
 
         <a href="" class="creador">
-          <img src="assets/profile/chema-photo-q0NfhcRc3v8-unsplash.jpg" alt="">
+          <img src="assets/profile/35.jpg" alt="">
           <form action=""></form>
         </a>
 
         <a href="" class="creador">
-          <img src="assets/profile/chema-photo-q0NfhcRc3v8-unsplash.jpg" alt="">
+          <img src="assets/profile/36.jpg" alt="">
           <form action=""></form>
         </a>
 
         <a href="" class="creador">
-          <img src="assets/profile/chema-photo-q0NfhcRc3v8-unsplash.jpg" alt="">
+          <img src="assets/profile/37.jpg" alt="">
           <form action=""></form>
         </a>
 
         <a href="" class="creador">
-          <img src="assets/profile/chema-photo-q0NfhcRc3v8-unsplash.jpg" alt="">
+          <img src="assets/profile/38.jpg" alt="">
           <form action=""></form>
         </a>
       </div>
@@ -654,40 +680,40 @@
     <div class="carrusel-dos">
       <div class="carrusel-items-dos">
         <div class="carrusel-item-dos">
-          <img src="assets/img/logo 2.png" alt="" />
+          <img src="assets/img/feed 2.jpeg" alt="" />
         </div>
         <div class="carrusel-item-dos">
-          <img src="assets/img/logo 2.png" alt="" />
+          <img src="assets/img/feed 2.jpeg" alt="" />
         </div>
         <div class="carrusel-item-dos">
-          <img src="assets/img/logo 2.png" alt="" />
+          <img src="assets/img/feed 2.jpeg" alt="" />
         </div>
         <div class="carrusel-item-dos">
-          <img src="assets/img/logo 2.png" alt="" />
+          <img src="assets/img/feed 2.jpeg" alt="" />
         </div>
         <div class="carrusel-item-dos">
-          <img src="assets/img/logo 2.png" alt="" />
+          <img src="assets/img/feed 2.jpeg" alt="" />
         </div>
         <div class="carrusel-item-dos">
-          <img src="assets/img/logo 2.png" alt="" />
+          <img src="assets/img/feed 2.jpeg" alt="" />
         </div>
         <div class="carrusel-item-dos">
-          <img src="assets/img/logo 2.png" alt="" />
+          <img src="assets/img/feed 2.jpeg" alt="" />
         </div>
         <div class="carrusel-item-dos">
-          <img src="assets/img/logo 2.png" alt="" />
+          <img src="assets/img/feed 2.jpeg" alt="" />
         </div>
         <div class="carrusel-item-dos">
-          <img src="assets/img/logo 2.png" alt="" />
+          <img src="assets/img/feed 2.jpeg" alt="" />
         </div>
         <div class="carrusel-item-dos">
-          <img src="assets/img/logo 2.png" alt="" />
+          <img src="assets/img/feed 2.jpeg" alt="" />
         </div>
         <div class="carrusel-item-dos">
-          <img src="assets/img/logo 2.png" alt="" />
+          <img src="assets/img/feed 2.jpeg" alt="" />
         </div>
         <div class="carrusel-item-dos">
-          <img src="assets/img/logo 2.png" alt="" />
+          <img src="assets/img/feed 2.jpeg" alt="" />
         </div>
       </div>
     </div>
@@ -697,40 +723,40 @@
         <div class="carrusel-tres">
           <div class="carrusel-items-tres">
             <div class="carrusel-item-tres">
-              <img src="assets/img/logo 2.png" alt="" />
+              <img src="assets/img/feed.jpeg" alt="" />
             </div>
             <div class="carrusel-item-tres">
-              <img src="assets/img/logo 2.png" alt="" />
+              <img src="assets/img/feed.jpeg" alt="" />
             </div>
             <div class="carrusel-item-tres">
-              <img src="assets/img/logo 2.png" alt="" />
+              <img src="assets/img/feed.jpeg" alt="" />
             </div>
             <div class="carrusel-item-tres">
-              <img src="assets/img/logo 2.png" alt="" />
+              <img src="assets/img/feed.jpeg" alt="" />
             </div>
             <div class="carrusel-item-tres">
-              <img src="assets/img/logo 2.png" alt="" />
+              <img src="assets/img/feed.jpeg" alt="" />
             </div>
             <div class="carrusel-item-tres">
-              <img src="assets/img/logo 2.png" alt="" />
+              <img src="assets/img/feed.jpeg" alt="" />
             </div>
             <div class="carrusel-item-tres">
-              <img src="assets/img/logo 2.png" alt="" />
+              <img src="assets/img/feed.jpeg" alt="" />
             </div>
             <div class="carrusel-item-tres">
-              <img src="assets/img/logo 2.png" alt="" />
+              <img src="assets/img/feed.jpeg" alt="" />
             </div>
             <div class="carrusel-item-tres">
-              <img src="assets/img/logo 2.png" alt="" />
+              <img src="assets/img/feed.jpeg" alt="" />
             </div>
             <div class="carrusel-item-tres">
-              <img src="assets/img/logo 2.png" alt="" />
+              <img src="assets/img/feed.jpeg" alt="" />
             </div>
             <div class="carrusel-item-tres">
-              <img src="assets/img/logo 2.png" alt="" />
+              <img src="assets/img/feed.jpeg" alt="" />
             </div>
             <div class="carrusel-item-tres">
-              <img src="assets/img/logo 2.png" alt="" />
+              <img src="assets/img/feed.jpeg" alt="" />
             </div>
           </div>
         </div>
@@ -791,8 +817,12 @@
     </section>
 
 
+
+
     <!-- scripts -->
     <script src="js/index.js"></script>
+
+    <!-- <script src="js/printscreen.js"></script> -->
     <script
       src="https://kit.fontawesome.com/70414ff70f.js"
       crossorigin="anonymous"

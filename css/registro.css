@@ -1,0 +1,201 @@
+@import url(config.css);
+
+body{
+    background: var(--dark);
+}
+
+
+
+main{
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: center;
+    align-items: center;
+}
+
+.left{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.left img{
+    width: 70%;
+    height: 70%;
+}
+
+
+
+.right{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.right form{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.grupo-logo img{
+    max-width: 200px;
+}
+
+.grupo-btn {
+    width: 100%;
+    height: 45px;
+    background: var(--azul);
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.grupo-btn a{
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    gap: 20%;
+    font-size: 1.3em;
+    text-decoration: none;
+    color: var(--blanco);
+}
+
+.grupo-btn img{
+    max-width: 30px;
+    margin-left: 20px;
+}
+
+.separador{
+    width: 100%;
+    height: 1px;
+    background: var(--blanco);
+    margin: 5px 0;
+}
+
+
+.grupo-input{
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+
+.grupo-input input{
+    width: 100%;
+    height: 45px;
+    border-radius: 15px;
+    outline: none;
+    border: 1px solid var(--dorado);
+    background: transparent;
+    padding-left: 15px;
+    letter-spacing: 2px;
+    transition: .3s;
+    color: var(--blanco);
+}
+
+.grupo-input input::placeholder{
+    color: var(--blanco);
+    padding-left: 5px;
+    letter-spacing: 2px;
+}
+
+.grupo-input input:focus{
+    transition: .3s;
+    border: 2px solid var(--rosa);
+}
+
+.grupo-btn:nth-child(6){
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.grupo-btn:nth-child(6) input{
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    outline: none;
+    border: none;
+    background: var(--rosa);
+    color: var(--blanco);
+    font-size: 1.3em;
+    letter-spacing: 3px;
+    cursor: pointer;
+}
+
+.grupo-msg{
+    width: 100%;
+    text-align: center;
+    color: var(--blanco);
+    font-size: 1em;
+}
+
+.login{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.login p{
+    color: var(--blanco);
+}
+
+.login a{
+    color: var(--rosa);
+    text-decoration: none;
+    letter-spacing: 2px;
+}
+
+@media (max-width: 950px) {
+    .left{
+        display: none;
+    }
+
+    main{
+        display: flex;
+    }
+}
+
+
+
+@media (max-width: 550px) {
+    .grupo-btn a{
+    gap: 20%;
+    }
+
+    .right form{
+        width: 70%;
+    }
+}
+
+@media (max-width: 460px) {
+    .grupo-btn a{
+    gap: 15%;
+    }
+
+    .right form{
+        width: 80%;
+    }
+}

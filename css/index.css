@@ -30,28 +30,61 @@ nav {
 nav ul {
   float: right;
   margin-right: 20px;
-}
-
-nav ul li {
-  display: inline-block;
+  display: flex;
   line-height: 40px;
-  margin: 0 5px;
+  gap: 20px;
 }
 
-nav ul li a {
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown span{
   color: var(--blanco);
-  font-size: 1.5em;
-  padding: 7px 5px;
-  border-radius: 10px;
-  text-transform: uppercase;
+  cursor: pointer;
+  font-size: 1.2em;
 }
 
-li a.active,
-li a:hover {
-  background-color: var(--negro);
-  color: var(--dorado);
-  box-shadow: 1px 1px 5px 0px var(--rosa);
-  transition: 0.3s;
+ul a{
+  color: var(--blanco);
+  cursor: pointer;
+  font-size: 1.2em;
+}
+
+.dropdown-content a{
+  cursor: pointer;
+}
+
+
+.dropdown-content a:hover{
+  background: var(--dorado);
+  border-radius: 10px;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: var(--dark);
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  padding: 12px 16px;
+  z-index: 1;
+  transition: .3s ;
+  border-radius: 10px;
+}
+
+.dropdown:hover .dropdown-content {
+  display: flex;
+  flex-direction: column;
+  transition: .3s ;
+
+}
+
+.btn-registro{
+  background: var(--rosa);
+  padding: 0 10px;
+  border-radius: 10px;
 }
 
 .checkbtn {
@@ -92,25 +125,18 @@ li a:hover {
     left: -100%;
     text-align: center;
     transition: all 0.5s;
+    flex-direction: column;
+    align-items: center;
   }
 
-  nav ul li {
-    display: block;
-    margin: 50px 0;
-    line-height: 30px;
+
+  .dropdown:hover .dropdown-content {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 90%;
   }
 
-  nav ul li a {
-    font-size: 1.5em;
-    color: var(--blanco);
-  }
-
-  li a:hover,
-  li a.active {
-    background: var(--dorado);
-    color: var(--negro);
-    transition: 0.3s;
-  }
 
   #check:checked ~ ul {
     left: 0;
@@ -120,89 +146,49 @@ li a:hover {
 
 /* Header */
 
-header {
+
+header{
   width: 100%;
-  height: 550px;
-  overflow-x: hidden;
-  z-index: 1;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  height: 620px;
 }
 
-.fotos_header {
-  width: 100%;
+.slider-frame {
+	width: 100%;
   height: 100%;
-  background: var(--dark);
-  display: grid;
-  justify-content: center;
-  align-items: center;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-  gap: 25px;
+	overflow: hidden;
 }
 
-.foto {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  background: var(--dorado);
-  overflow: hidden;
-  display: flex;
-  margin: auto;
+.slider-frame .ul-slider {
+	display: flex;
+	padding: 0;
+	width: 400%;
+  height: 620px;
+	animation: slide 20s infinite alternate ease-in-out;
 }
 
-.foto img {
-  width: 100%;
+.slider-frame .li-slider {
+	width: 100%;
+	list-style: none;
+}
+
+.slider-frame img {
+	width: 100%;
   height: 100%;
 }
 
-.text_header {
-  position: absolute;
-  z-index: 999;
-  margin-left: 50px;
+@keyframes slide {
+	0% {margin-left: 0;}
+	20% {margin-left: 0;}
+	
+	25% {margin-left: -100%;}
+	45% {margin-left: -100%;}
+	
+	50% {margin-left: -200%;}
+	70% {margin-left: -200%;}
+	
+	75% {margin-left: -300%;}
+	100% {margin-left: -300%;}
 }
-
-.title_header {
-  font-size: 3.5em;
-  color: var(--blanco);
-}
-
-.subtitle_header {
-  width: 70%;
-  font-size: 1.3em;
-  margin-top: -80px;
-  color: var(--blanco);
-}
-
-.sombra {
-  width: 100%;
-  height: 100%;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.071), rgba(0, 0, 0, 0.865));
-  position: absolute;
-}
-
-.btn_header {
-  display: flex;
-  flex-direction: column;
-}
-
-.btn_header span {
-  font-size: 1.5em;
-  color: var(--blanco);
-}
-
-.btn_header a {
-  width: 100px;
-  text-align: center;
-  background: var(--rosa);
-  padding: 10px 0;
-  border-radius: 10px;
-  cursor: pointer;
-  color: var(--blanco);
-  font-size: 1.2em;
-}
-
 /* formulario de login */
 
 .login {
@@ -215,7 +201,7 @@ header {
 
 .login form {
   width: 300px;
-  height: 400px;
+  height: 420px;
   float: right;
   margin: -300px 30px 0px 0px;
   position: absolute;
@@ -247,11 +233,15 @@ header {
 }
 .grupo-text span {
   color: var(--blanco);
-  font-size: 1.5em;
+  font-size: 1.3em;
 }
 
 .grupo-text:last-child {
+  width: 100%;
+  display: flex;
+  align-items: center;
   text-align: center;
+  margin: auto;
 }
 
 .grupo-input {
@@ -280,8 +270,36 @@ header {
   cursor: pointer;
 }
 
-/* carrusel */
+.btn-google{
+  width: 100%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
 
+.btn-google a{
+  width: 200%;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+  gap: 10px;
+  background: transparent;
+  border: 2px solid var(--dorado);
+  border-radius: 10px;
+  color: var(--blanco);
+  text-transform: uppercase;
+
+}
+
+.btn-google img{
+  max-width: 30px;
+}
+
+
+
+/* carrusel */
+/* 
 .carrusel {
   height: 300px;
   display: flex;
@@ -319,7 +337,7 @@ header {
 .carrusel-item:hover {
   transform: scale(1.1);
   transition: 0.3s;
-}
+} */
 
 /* Categorias */
 
@@ -330,7 +348,7 @@ header {
   border-radius: 10px;
   justify-content: center;
   align-items: center;
-  margin-top: 50px;
+  margin-top: -150px;
 }
 
 .tabs_head {
@@ -398,7 +416,7 @@ header {
   margin-top: 150px;
 }
 
-.text-creadores {
+.text-creadores, .text-creadores-dos{
   width: 100%;
   height: 80px;
   display: flex;
@@ -407,7 +425,13 @@ header {
   align-items: center;
 }
 
-.text-creadores h2 {
+.text-creadores-dos{
+  margin-bottom: 50px;
+}
+
+
+
+.text-creadores h2, .text-creadores-dos h2{
   font-size: 3em;
   color: var(--blanco);
   letter-spacing: 2px;
@@ -458,6 +482,10 @@ header {
 }
 
 /* carrusel categorias */
+
+.Carousel-dos{
+  margin-top: 200px;
+}
 
 .Carousel {
   width: 100%;
@@ -511,6 +539,7 @@ header {
   color: #fff;
   padding: 15px;
   margin-top: 80%;
+  text-shadow: 1px 2px #000;
 }
 .slick h4 small {
   font-size: 1.5em;
@@ -707,7 +736,7 @@ header {
 
   .login form{
     width: 250px;
-    height: 350px;
+    height: 400px;
   }
 
   .grupo-text span{
@@ -799,12 +828,12 @@ header {
       }
 
       .carrusel{
-        margin-top: -200px;
+        margin-top: -250px;
         background: transparent;
       }
 
       .login form{
-        margin: -180px 0 0 0;
+        margin: -220px 0 0 0;
       }
 
       .grid-creadores{
@@ -819,7 +848,7 @@ header {
 
       .tabs_toggle{
         width: 100%;
-        font-size: .5em;
+        font-size: .8em;
       }
 
       .text-creadores h2{

@@ -8,9 +8,9 @@
  * 2. Prevent adjustments of font size after orientation changes in iOS.
  */
 
-<style>
+
 @import url('https://fonts.googleapis.com/css2?family=Teko:wght@300;400;500;600;700&display=swap');
-</style>
+
 
  html {
     line-height: 1.15; /* 1 */
